@@ -3,7 +3,7 @@
 namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
 {
     [ApiController]
-    [Route("especialidade")]
+    [Route("medico-especialista")]
     public class EspecialidadeController : ControllerBase
     {
         [HttpGet]
