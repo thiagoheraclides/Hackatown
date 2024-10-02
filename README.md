@@ -1,10 +1,10 @@
 # Hackatown
 
 ## Operadora de Saúde
-**A aplicação em .NET que simule um sistema de operadora de saúde que tem como objetivo digitalizar seus processos e operações. O foco será em agendamento de consultas médicas.**
+**Aplicação em .NET que simule um sistema de operadora de saúde que tem como objetivo digitalizar seus processos e operações, o foco será em agendamento de consultas médicas.**
 
 
-## Arquitetura da Operadora de Saúde
+## Arquitetura da solução proposta pelo grupo
 ![Hackaton](https://github.com/user-attachments/assets/901bd66e-7540-4bc7-9628-7ff41685a1b8)
 
 
@@ -39,8 +39,8 @@ Seguimos a estrutura padrão do estilo [RESTful](https://en.wikipedia.org/wiki/R
 Projeto criado utilizando .NET 8 com Banco de dados SQL Server, seguindo os princípios da Clean Architecture
 
 ## Funcionalidades
+![API](https://github.com/user-attachments/assets/2ba1650c-c899-43d0-b2c9-4156e3e36d50)
 
-![PHOTO-2024-08-25-19-11-11](https://github.com/user-attachments/assets/427d5369-6d61-4ffc-84a5-f0a8f6193be7)
 
 
 ## Testes
@@ -56,13 +56,13 @@ Após instanciar o projeto URL Local: https://localhost:7245/swagger/index.html
 ## Critérios de aceite
 
 - **Criar a API de cadastro de usuários: Médicos e Pacientes**
-- **Criar a API de autenticação do usuário (uma para o médico e outra para o paciente)**
-- **Criar a API para agendar consultar médicas**
-A API será composta de:
-  - **Pesquisar**: Apresentar todos os **médicos** permitir visualizar todos os médicos disponíveis;
-  - **Agendar**: Paciente poderá selecionar o horário de preferência e realizar o agendamento.
-  - **Notificar**: Após o agendamento realizado pelo usuário paciente, o médico deverá receber um e-mail;
-  - **Validar**: O sistema deverá ser capas de suportar múltiplos acessos, garantir que apenas uma marcação seja permitida para um determinado horário e validar a disponibilidade do horário selecionado em tempo real, assegurando que não haja sobreposição de horários para consultar agendadas;
+- **Criar a API de autenticação do usuário**
+- **Criar a API para agendar as consultas médicas ->**
+API será composta de:
+  - **Pesquisar**: Permitir visualizar todos os médicos especialistas disponíveis;
+  - **Agendar**: Paciente poderá selecionar o horário de preferência e realizar o agendamento da consulta.
+  - **Notificar**: Após o agendamento realizado pelo paciente, o médico deverá receber um e-mail;
+  - **Validar**: O sistema deverá ser capas de suportar múltiplos acessos, garantir que apenas uma marcação seja permitida para um determinado horário e médico, validar a disponibilidade do horário selecionado em tempo real, assegurando que não haja sobreposição de horários para consultar agendadas;
  
 
 ## Desenvolvedores
