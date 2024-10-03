@@ -15,7 +15,8 @@
 
 
 ## Modelo Entidade Relacionamento - Banco de Dados
-![image](https://github.com/user-attachments/assets/2c2b1028-4cd2-43db-a0d5-134fa2982073)
+![Screenshot 2024-10-03 102347](https://github.com/user-attachments/assets/52edf44b-bd9f-47dd-b517-16294ae085d0)
+
 
 
 ## Banco de Dados
