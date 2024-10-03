@@ -4,7 +4,7 @@
 **Aplicação em .NET que simule um sistema de operadora de saúde que tem como objetivo digitalizar seus processos e operações, o foco será em agendamento de consultas médicas.**
 
 
-## Arquitetura da solução proposta pelo grupo
+## Arquitetura da Solução Proposta pelo Grupo
 ![Hackaton](https://github.com/user-attachments/assets/901bd66e-7540-4bc7-9628-7ff41685a1b8)
 
 
@@ -18,7 +18,7 @@
 ![image](https://github.com/user-attachments/assets/2c2b1028-4cd2-43db-a0d5-134fa2982073)
 
 
-## Banco de dados
+## Banco de Dados
 
 Este projeto foi criado usando banco de dados MS-SQL Server.
 A solução está configurada para criar e gerar o banco de dados ao iniciar a aplicação. Para isto basta apenas alterar no arquivo appsettings.json, a propriedade ConnectionStrings, item Default, com as configurações relativas ao seu ambiente.
