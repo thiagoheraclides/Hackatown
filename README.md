@@ -10,7 +10,9 @@
 
 
 ## Domain Storytelling da Operadora de Saúde
-![Portal de Investimentos_2024-07-25](https://github.com/user-attachments/assets/07b4f111-28b6-4de0-a78a-9203ff59d741)
+![PortalOperadoraSaude_2024-10-03](https://github.com/user-attachments/assets/aaedeb2d-49b0-45a5-af96-1fcfcff6443b)
+
+
 
 ## Modelo Entidade Relacionamento - Banco de Dados
 ![image](https://github.com/user-attachments/assets/2c2b1028-4cd2-43db-a0d5-134fa2982073)
