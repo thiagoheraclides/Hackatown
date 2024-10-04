@@ -90,8 +90,9 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
                         Detalhes = string.Join(" ", errors.Select(e => e.ErrorMessage))
                     });
                 }
-                
-                await _pacienteService.Agendar(consultaMedicaDTO.CodigoPaciente, consultaMedicaDTO.CodigoHorarioDisponivel);
+                SemaphoreSlim semaphoreSlim = new (1);
+
+                await _pacienteService.Agendar(consultaMedicaDTO.CodigoPaciente, consultaMedicaDTO.CodigoHorarioDisponivel, semaphoreSlim);
 
                 return Created();
             }

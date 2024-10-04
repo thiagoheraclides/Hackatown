@@ -11,8 +11,11 @@ namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
     {
         private readonly Context _data = data;
 
-        public async Task Agendar(int codigoPaciente, int codigoHorarioDisponível)
-        {
+        public async Task Agendar(int codigoPaciente, int codigoHorarioDisponível, SemaphoreSlim semaphoreSlim)
+        { 
+
+            await semaphoreSlim.WaitAsync();
+
             var paciente = await _data.Pacientes
                 .Where(pct => pct.Id == codigoPaciente)
                 .FirstOrDefaultAsync()
@@ -35,6 +38,8 @@ namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
             await _data.SaveChangesAsync();
 
             EnviarEmail(medico, paciente, horarioDisponivel);
+
+            semaphoreSlim.Release();
         }
 
         public async Task Cadastrar(UsuarioPaciente paciente)
