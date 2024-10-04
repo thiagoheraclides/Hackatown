@@ -27,8 +27,7 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
                 }
                 
                 UsuarioMedico medico = new() { Nome = medicoDTO.Nome, CPF = medicoDTO.Cpf, CRM = medicoDTO.Crm, Email = medicoDTO.Email,
-                            Senha = medicoDTO.Senha, CodigoEspecialidade = medicoDTO.CodigoEspecialidade, Especialidade = new EspecialidadeMedica { 
-                            Codigo = medicoDTO.CodigoEspecialidade, Descricao = medicoDTO.DescricaoEspecialidade } };
+                            Senha = medicoDTO.Senha, CodigoEspecialidade = medicoDTO.CodigoEspecialidade };
 
                 await _medicoService.Cadastrar(medico);
 

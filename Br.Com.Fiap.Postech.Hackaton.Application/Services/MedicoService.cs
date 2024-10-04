@@ -11,10 +11,11 @@ namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
 
         public async Task Cadastrar(UsuarioMedico medico)
         {
-            var especialidadeExistente = await _data.Especialidades.AnyAsync(especialidade => especialidade.Codigo == medico.CodigoEspecialidade);
+            var especialidadeExistente = await _data.Especialidades
+                .AnyAsync(especialidade => especialidade.Codigo == medico.CodigoEspecialidade);
 
             if (!especialidadeExistente)
-                await _data.Especialidades.AddAsync(medico.Especialidade);
+                throw new Exception("Esta filial da clínica não atende a esta especialidade.");
 
             await _data.Medicos.AddAsync(medico);
 

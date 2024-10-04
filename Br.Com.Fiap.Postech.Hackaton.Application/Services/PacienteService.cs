@@ -4,6 +4,7 @@ using Br.Com.Fiap.Postech.Hackaton.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using MailKit.Net.Smtp;
 using MimeKit;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
 {
@@ -15,6 +16,8 @@ namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
         { 
 
             await semaphoreSlim.WaitAsync();
+
+            Thread.Sleep(10000);
 
             var paciente = await _data.Pacientes
                 .Where(pct => pct.Id == codigoPaciente)
@@ -84,7 +87,7 @@ namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
             var builder = new BodyBuilder()
             {
                 TextBody = $"Olá, Dr. {usuarioMedico.Nome}!{Environment.NewLine}Você tem uma nova consulta marcada! " +
-                    $"Paciente: {usuarioPaciente.Nome}.{Environment.NewLine}Data e horário: {agenda.Data} às {agenda.HoraInicial}."
+                    $"Paciente: {usuarioPaciente.Nome}.{Environment.NewLine}Data e horário: {agenda.Data:dd/MM/yyyy} às {agenda.HoraInicial}."
             };
 
             email.Body = builder.ToMessageBody();

@@ -1,13 +1,9 @@
 ﻿using Br.Com.Fiap.Postech.Hackaton.Domain.Entidades;
 using Br.Com.Fiap.Postech.Hackaton.Domain.Interfaces;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
 {
