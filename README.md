@@ -50,6 +50,8 @@ Projeto criado utilizando .NET 8 com Banco de dados SQL Server, seguindo os prin
 ## Testes
 Os testes estão disponibilizados na Solution do projeto, em parte apartada aos binários da API.
 
+![image](https://github.com/user-attachments/assets/c9e91010-d645-4a45-a3a4-f91de483ac26)
+
 
 ## Observações Complementares
 
