@@ -1,4 +1,4 @@
-# Hackatown
+# Hackaton
 
 ## Operadora de Saúde
 **Aplicação em .NET que simule um sistema de operadora de saúde que tem como objetivo digitalizar seus processos e operações, o foco será em agendamento de consultas médicas.**
