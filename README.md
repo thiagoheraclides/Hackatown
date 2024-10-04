@@ -53,6 +53,11 @@ Os testes estão disponibilizados na Solution do projeto, em parte apartada aos 
 ![image](https://github.com/user-attachments/assets/c9e91010-d645-4a45-a3a4-f91de483ac26)
 
 
+## Pipeline
+
+![image](https://github.com/user-attachments/assets/125cd562-4a55-4595-aeae-85a5facf0230)
+
+
 ## Observações Complementares
 
 Utilizamos Swagger para documentação dos métodos disponibilizados na API.
