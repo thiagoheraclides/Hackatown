@@ -45,5 +45,15 @@ namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
             return await _data.Agendas.Where(a => a.CodigoMedico == codigoMedico 
                 && a.Data == data.Date && a.CodigoPaciente == null).ToListAsync();
         }
+
+        public async Task<UsuarioPaciente> Obter(string email, string senha)
+        {
+            var paciente = await _data.Pacientes
+                .Where(med => med.Email == email && med.Senha == senha)
+                .FirstOrDefaultAsync()
+                ?? throw new Exception("Usuário não encontrado.");
+
+            return paciente;
+        }
     }
 }

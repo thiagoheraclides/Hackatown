@@ -6,6 +6,8 @@ namespace Br.Com.Fiap.Postech.Hackaton.Domain.Interfaces
     {
         Task Cadastrar(UsuarioMedico medico);
 
+        Task<UsuarioMedico> Obter(string email, string senha);
+
         Task<IEnumerable<UsuarioMedico>> ObterPorCodigoEspecialidade(int codigo);
 
         Task CadastrarAgenda(IList<Agenda> Horarios);

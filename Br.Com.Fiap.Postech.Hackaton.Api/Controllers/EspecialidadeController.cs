@@ -1,4 +1,5 @@
 ﻿using Br.Com.Fiap.Postech.Hackaton.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
@@ -9,6 +10,7 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
     {
         private readonly IEspecialidadeService _especialidadeService = especialidadeService;
 
+        [Authorize(Roles = "PACIENTE")]
         [HttpGet]
         public async Task<IActionResult> Obter()
         {

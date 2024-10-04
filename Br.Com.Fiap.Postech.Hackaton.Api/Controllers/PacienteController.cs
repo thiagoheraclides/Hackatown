@@ -2,6 +2,7 @@
 using Br.Com.Fiap.Postech.Hackaton.Api.Tools;
 using Br.Com.Fiap.Postech.Hackaton.Domain.Entidades;
 using Br.Com.Fiap.Postech.Hackaton.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
@@ -12,7 +13,7 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
     {
 
         private readonly IPacienteService _pacienteService = pacienteService;
-
+        [AllowAnonymous]
         [HttpPost("cadastrar")]
         public async Task<IActionResult> Cadastrar([FromBody]PacienteDTO pacienteDTO)
         {
@@ -44,6 +45,7 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
             }
         }
 
+        [Authorize(Roles = "PACIENTE")]
         [HttpPost("consulta/horarios")]
         public async Task<IActionResult> Obter([FromBody]PesquisaDisponibilidadeDTO pesquisaDisponibilidadeDTO)
         {
@@ -72,6 +74,7 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
             }
         }
 
+        [Authorize(Roles = "PACIENTE")]
         [HttpPost("consulta/agendar")]
         public async Task<IActionResult> AgendarConsulta([FromBody]ConsultaMedicaDTO consultaMedicaDTO)
         {

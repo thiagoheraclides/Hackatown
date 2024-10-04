@@ -28,6 +28,16 @@ namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
             await _data.SaveChangesAsync();
         }
 
+        public async Task<UsuarioMedico> Obter(string email, string senha)
+        {
+            var medico = await _data.Medicos
+                .Where(med => med.Email == email && med.Senha == senha)
+                .FirstOrDefaultAsync()
+                ?? throw new Exception("Usuário não encontrado.");
+
+            return medico;
+        }
+
         public async Task<IEnumerable<UsuarioMedico>> ObterPorCodigoEspecialidade(int codigo)
         {
             var especializadade = await _data.Especialidades

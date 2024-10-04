@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Br.Com.Fiap.Postech.Hackaton.Domain\Br.Com.Fiap.Postech.Hackaton.Domain.csproj" />
     <ProjectReference Include="..\Br.Com.Fiap.Postech.Hackaton.Infra\Br.Com.Fiap.Postech.Hackaton.Infra.csproj" />
   </ItemGroup>
