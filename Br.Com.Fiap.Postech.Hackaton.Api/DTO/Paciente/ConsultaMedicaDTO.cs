@@ -1,11 +1,13 @@
-﻿namespace Br.Com.Fiap.Postech.Hackaton.Api.DTO.Paciente
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Br.Com.Fiap.Postech.Hackaton.Api.DTO.Paciente
 {
     public class ConsultaMedicaDTO
     {
-        public int PacienteId { get; set; }
+        [Required(ErrorMessage = "O campo código do paciente é obrigatório.")]
+        public int CodigoPaciente { get; set; }
 
-        public int MedicoId { get; set; }
-
-        public int HorarioVagoId { get; set; }
+        [Required(ErrorMessage = "O campo código do horário disponível é obrigatório.")]
+        public int CodigoHorarioDisponivel { get; set; }
     }
 }

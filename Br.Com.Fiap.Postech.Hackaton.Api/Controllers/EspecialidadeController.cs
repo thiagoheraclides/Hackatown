@@ -1,17 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Br.Com.Fiap.Postech.Hackaton.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
 {
     [ApiController]
     [Route("medico-especialista")]
-    public class EspecialidadeController : ControllerBase
+    public class EspecialidadeController(IEspecialidadeService especialidadeService) : ControllerBase
     {
+        private readonly IEspecialidadeService _especialidadeService = especialidadeService;
+
         [HttpGet]
-        public IActionResult Obter()
+        public async Task<IActionResult> Obter()
         {
             try
             {
-                throw new NotImplementedException();
+                var especialidades = await _especialidadeService.ObterAsync();
+                return Ok(especialidades.Select(esp => new { esp.Codigo, esp.Descricao }).ToList());
             }
             catch (Exception e)
             {

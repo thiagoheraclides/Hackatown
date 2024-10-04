@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Br.Com.Fiap.Postech.Hackaton.Domain\Br.Com.Fiap.Postech.Hackaton.Domain.csproj" />
+    <ProjectReference Include="..\Br.Com.Fiap.Postech.Hackaton.Infra\Br.Com.Fiap.Postech.Hackaton.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

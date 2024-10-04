@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Br.Com.Fiap.Postech.Hackaton.Domain.Entidades
 {
-    public partial class Consulta
+    public class Consulta
     {
         //Identificador único da consulta
         public int? Id { get; set; }

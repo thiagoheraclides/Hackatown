@@ -1,4 +1,9 @@
 
+using Br.Com.Fiap.Postech.Hackaton.Application.Services;
+using Br.Com.Fiap.Postech.Hackaton.Domain.Interfaces;
+using Br.Com.Fiap.Postech.Hackaton.Infra.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Br.Com.Fiap.Postech.Hackaton.Api
 {
     public class Program
@@ -9,7 +14,17 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().ConfigureApiBehaviorOptions(opt => opt.SuppressModelStateInvalidFilter = true);
+
+            builder.Services.AddDbContext<Context>(options => 
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+            //Dependency Injection
+            builder.Services.AddScoped<IMedicoService, MedicoService>();
+            builder.Services.AddScoped<IPacienteService, PacienteService>();
+            builder.Services.AddScoped<IEspecialidadeService, EspecialidadeService>();
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

@@ -1,26 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Br.Com.Fiap.Postech.Hackaton.Domain.Entidades
 {
-    public partial class UsuarioPaciente
+    [Table("TB_USUARIO_PACIENTE")]
+    public class UsuarioPaciente
     {
         //Identificador único do usuário paciente
-        public int? Id { get; set; }
+        [Key]
+        [Column("CD_USUARIO_PACIENTE")]
+        public int Id { get; set; }
 
         //Nome completo do usuário paciente
-        public string Nome { get; set; }
+        [Column("NM_USUARIO_PACIENTE")]
+        public string Nome { get; set; } = null!;
 
         //Email do usuário paciente
-        public string Email { get; set; }
+        [Column("DS_EMAIL_PACIENTE")]
+        public string Email { get; set; } = null!;
 
         //CPF do usuário paciente
-        public string CPF { get; set; }
+        [Column("NR_CPF_PACIENTE")]
+        public string CPF { get; set; } = null!;
 
         //Hash da senha para autenticação
-        public string Senha { get; set; }
+        [Column("DS_SENHA_PACIENTE")]
+        public string Senha { get; set; } = null!;
     }
 }

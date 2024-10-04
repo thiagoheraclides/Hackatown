@@ -1,4 +1,6 @@
-﻿namespace Br.Com.Fiap.Postech.Hackaton.Api.DTO.Medico
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Br.Com.Fiap.Postech.Hackaton.Api.DTO.Medico
 {
     public class EspecialistaDTO
     {

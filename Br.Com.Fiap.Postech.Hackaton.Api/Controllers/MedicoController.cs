@@ -1,18 +1,37 @@
 ﻿using Br.Com.Fiap.Postech.Hackaton.Api.DTO.Medico;
+using Br.Com.Fiap.Postech.Hackaton.Api.Tools;
+using Br.Com.Fiap.Postech.Hackaton.Domain.Entidades;
+using Br.Com.Fiap.Postech.Hackaton.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
 {
     [ApiController]
     [Route("medico")]
-    public class MedicoController : ControllerBase
+    public class MedicoController(IMedicoService medicoService) : ControllerBase
     {
+
+        private readonly IMedicoService _medicoService = medicoService;
+
         [HttpPost("cadastrar")]
-        public IActionResult Cadastrar(MedicoDTO medicoDTO)
+        public async Task<IActionResult> Cadastrar([FromBody]MedicoDTO medicoDTO)
         {
             try
             {
-                throw new NotImplementedException();
+                if (!ModelState.IsValid) 
+                {
+                    var errors = ModelState.Values.SelectMany(error =>  error.Errors);
+                    return BadRequest(new { Resultado = "Erro", Descricao = "Ocorreram erros de validação na requisição.",
+                        Detalhes = string.Join(" ", errors.Select(e => e.ErrorMessage)) });
+                }
+                
+                UsuarioMedico medico = new() { Nome = medicoDTO.Nome, CPF = medicoDTO.Cpf, CRM = medicoDTO.Crm, Email = medicoDTO.Email,
+                            Senha = Hasher.Hash(medicoDTO.Senha), CodigoEspecialidade = medicoDTO.CodigoEspecialidade, Especialidade = new EspecialidadeMedica { 
+                            Codigo = medicoDTO.CodigoEspecialidade, Descricao = medicoDTO.DescricaoEspecialidade } };
+
+                await _medicoService.Cadastrar(medico);
+
+                return Created();
             }
             catch (Exception e)
             {
@@ -22,11 +41,30 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
         }
 
         [HttpPost("agenda/cadastrar")]
-        public IActionResult CadastrarAgenda(AgendaDTO agendaDTO)
+        public async Task<IActionResult> CadastrarAgenda(AgendaDTO agendaDTO)
         {
             try
             {
-                throw new NotImplementedException();
+                if (!ModelState.IsValid)
+                {
+                    var errors = ModelState.Values.SelectMany(error => error.Errors);
+                    return BadRequest(new
+                    {
+                        Resultado = "Erro",
+                        Descricao = "Ocorreram erros de validação na requisição.",
+                        Detalhes = string.Join(" ", errors.Select(e => e.ErrorMessage))
+                    });
+                }
+
+                var horariosParaAtendimento = agendaDTO.HorariosDisponiveis.Select(hd => new Agenda { 
+                    CodigoMedico = agendaDTO.CodigoMedico, Data = hd.HoraInicial.Date, HoraInicial = TimeSpan.Parse(hd.HoraInicial.ToString("HH:mm:ss")),
+                    HoraFinal = TimeSpan.Parse(hd.HoraFinal.ToString("HH:mm:ss"))
+                })
+                    .ToList();
+
+                await _medicoService.CadastrarAgenda(horariosParaAtendimento);
+
+                return Created();
             }
             catch (Exception e)
             {
@@ -37,11 +75,16 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
 
 
         [HttpGet("especialidade/{codigo}")]
-        public IActionResult ObterMedicoPorExpecialidade(int codigo)
+        public async Task<IActionResult> ObterMedicoPorExpecialidade(int codigo)
         {
             try
             {
-                throw new NotImplementedException();
+                var respostaServico = await _medicoService.ObterPorCodigoEspecialidade(codigo);
+                var especialidade = respostaServico.Select(e => e.Especialidade).FirstOrDefault();
+                var medicosPorEspecialidade = respostaServico.Select(m => new { m.Nome, m.CRM, m.Email });
+                
+                return Ok(medicosPorEspecialidade.Select(medico => 
+                        new { Especialidade = especialidade!.Descricao, Medicos = medicosPorEspecialidade}));
             }
             catch (Exception e)
             {
