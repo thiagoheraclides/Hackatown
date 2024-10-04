@@ -43,7 +43,7 @@ Seguimos a estrutura padrão do estilo [RESTful](https://en.wikipedia.org/wiki/R
 Projeto criado utilizando .NET 8 com Banco de dados SQL Server, seguindo os princípios da Clean Architecture
 
 ## Funcionalidades
-![API](https://github.com/user-attachments/assets/2ba1650c-c899-43d0-b2c9-4156e3e36d50)
+![image](https://github.com/user-attachments/assets/3049a886-1c19-4c3b-92f7-005c1345d57b)
 
 
 
