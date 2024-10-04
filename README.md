@@ -1,4 +1,4 @@
-# Hackatown
+# Hackaton
 
 ## Operadora de Saúde
 **Aplicação em .NET que simule um sistema de operadora de saúde que tem como objetivo digitalizar seus processos e operações, o foco será em agendamento de consultas médicas.**
@@ -15,7 +15,8 @@
 
 
 ## Modelo Entidade Relacionamento - Banco de Dados
-![Screenshot 2024-10-03 102347](https://github.com/user-attachments/assets/52edf44b-bd9f-47dd-b517-16294ae085d0)
+![image](https://github.com/user-attachments/assets/43f2b2c2-e2ba-42d4-9a3d-43d493d975ca)
+
 
 
 
@@ -42,7 +43,7 @@ Seguimos a estrutura padrão do estilo [RESTful](https://en.wikipedia.org/wiki/R
 Projeto criado utilizando .NET 8 com Banco de dados SQL Server, seguindo os princípios da Clean Architecture
 
 ## Funcionalidades
-![API](https://github.com/user-attachments/assets/2ba1650c-c899-43d0-b2c9-4156e3e36d50)
+![image](https://github.com/user-attachments/assets/3049a886-1c19-4c3b-92f7-005c1345d57b)
 
 
 
