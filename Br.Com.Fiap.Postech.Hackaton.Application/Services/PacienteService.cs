@@ -2,6 +2,8 @@
 using Br.Com.Fiap.Postech.Hackaton.Domain.Interfaces;
 using Br.Com.Fiap.Postech.Hackaton.Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using MailKit.Net.Smtp;
+using MimeKit;
 
 namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
 {
@@ -16,13 +18,23 @@ namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
                 .FirstOrDefaultAsync()
                 ?? throw new Exception("Paciente não localizado.");
 
-            var horarioDisponivel = await _data.Agendas.Where(a => a.Codigo == codigoHorarioDisponível).FirstOrDefaultAsync();
+            var horarioDisponivel = await _data.Agendas
+                .Where(a => a.Codigo == codigoHorarioDisponível)
+                .FirstOrDefaultAsync();
 
             if (horarioDisponivel is null || horarioDisponivel.CodigoPaciente is not null)
                 throw new Exception("Horário não disponível para agendamento");
 
-            horarioDisponivel.CodigoPaciente = codigoPaciente;           
+            horarioDisponivel.CodigoPaciente = codigoPaciente;
+
+            var medico = await _data.Medicos
+                .Where(med => med.Id == horarioDisponivel!.CodigoMedico)
+                .FirstOrDefaultAsync()
+                ?? throw new Exception("Paciente não localizado.");
+         
             await _data.SaveChangesAsync();
+
+            EnviarEmail(medico, paciente, horarioDisponivel);
         }
 
         public async Task Cadastrar(UsuarioPaciente paciente)
@@ -54,6 +66,31 @@ namespace Br.Com.Fiap.Postech.Hackaton.Application.Services
                 ?? throw new Exception("Usuário não encontrado.");
 
             return paciente;
+        }
+
+        private static void EnviarEmail(UsuarioMedico usuarioMedico, UsuarioPaciente usuarioPaciente, Agenda agenda)
+        {
+            using var email = new MimeMessage();
+            email.From.Add(new MailboxAddress("Sender E-mail", "sender@demomailtrap.com"));
+            email.To.Add(new MailboxAddress(usuarioMedico.Nome, usuarioMedico.Email));
+
+            email.Subject = "Health&Med - Nova consulta agendada";
+
+            var builder = new BodyBuilder()
+            {
+                TextBody = $"Olá, Dr. {usuarioMedico.Nome}!{Environment.NewLine}Você tem uma nova consulta marcada! " +
+                    $"Paciente: {usuarioPaciente.Nome}.{Environment.NewLine}Data e horário: {agenda.Data} às {agenda.HoraInicial}."
+            };
+
+            email.Body = builder.ToMessageBody();
+
+            using var smtp = new SmtpClient();
+            smtp.Connect("sandbox.smtp.mailtrap.io", 2525, false);
+
+            smtp.Authenticate("ef292348a12c45", "0f7957b796f63f");
+
+            smtp.Send(email);
+            smtp.Disconnect(true);
         }
     }
 }

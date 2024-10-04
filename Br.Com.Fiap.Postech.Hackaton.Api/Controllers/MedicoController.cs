@@ -1,5 +1,4 @@
 ﻿using Br.Com.Fiap.Postech.Hackaton.Api.DTO.Medico;
-using Br.Com.Fiap.Postech.Hackaton.Api.Tools;
 using Br.Com.Fiap.Postech.Hackaton.Domain.Entidades;
 using Br.Com.Fiap.Postech.Hackaton.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -28,7 +27,7 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
                 }
                 
                 UsuarioMedico medico = new() { Nome = medicoDTO.Nome, CPF = medicoDTO.Cpf, CRM = medicoDTO.Crm, Email = medicoDTO.Email,
-                            Senha = Hasher.Hash(medicoDTO.Senha), CodigoEspecialidade = medicoDTO.CodigoEspecialidade, Especialidade = new EspecialidadeMedica { 
+                            Senha = medicoDTO.Senha, CodigoEspecialidade = medicoDTO.CodigoEspecialidade, Especialidade = new EspecialidadeMedica { 
                             Codigo = medicoDTO.CodigoEspecialidade, Descricao = medicoDTO.DescricaoEspecialidade } };
 
                 await _medicoService.Cadastrar(medico);
@@ -78,7 +77,7 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
 
         [Authorize(Roles = "PACIENTE")]
         [HttpGet("especialidade/{codigo}")]
-        public async Task<IActionResult> ObterMedicoPorExpecialidade(int codigo)
+        public async Task<IActionResult> ObterMedicoPorEspecialidade(int codigo)
         {
             try
             {
@@ -95,5 +94,6 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
                 return BadRequest(new { Resultado = "Erro", Mensagem = e.Message });
             }
         }
+
     }
 }

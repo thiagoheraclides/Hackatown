@@ -31,7 +31,7 @@ namespace Br.Com.Fiap.Postech.Hackaton.Api.Controllers
                 }
 
                 var paciente = new UsuarioPaciente { Nome = pacienteDTO.Nome, CPF = pacienteDTO.Cpf, Email = pacienteDTO.Email,
-                    Senha = Hasher.Hash(pacienteDTO.Senha) };
+                    Senha = pacienteDTO.Senha };
 
                 await _pacienteService.Cadastrar(paciente);
 
